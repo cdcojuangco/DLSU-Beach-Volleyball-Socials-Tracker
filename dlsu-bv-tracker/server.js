@@ -53,6 +53,14 @@ app.get('/api/stats', async (req, res) => {
     monthlyViews: overrides.instagram?.monthlyViews ?? null,
     monetization: overrides.instagram?.monetization ?? 'Not monetized',
   };
+  // Instagram — always manual
+  stats.instagram = {
+    status: overrides.instagram?.followers ? 'manual' : 'not_configured',
+    error: null,
+    followers: overrides.instagram?.followers ?? null,
+    monthlyViews: overrides.instagram?.monthlyViews ?? null,
+    monetization: overrides.instagram?.monetization ?? 'Not monetized',
+  };
   // Merge manual watch hours for YouTube (API can't provide this)
   if (stats.youtube && overrides.youtube?.watchHours != null) {
     stats.youtube.watchHours = overrides.youtube.watchHours;
